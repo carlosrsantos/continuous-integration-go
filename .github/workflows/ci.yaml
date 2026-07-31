@@ -9,11 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ['1.26.5', '1.26.12']
+        go: ['1.26.5', '1.25.12']
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-go@v7
         with:
           go-version: ${{ matrix.go }}
+
+      # Permite download automatico de toolchain para operar entre versões diferentes
+      - run: go env -w GOTOOLCHAIN=auto
       - run: go test
       - run: go run math.go
