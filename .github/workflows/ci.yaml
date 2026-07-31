@@ -16,7 +16,5 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
-      # Permite download automatico de toolchain para operar entre versões diferentes
-      - run: go env -w GOTOOLCHAIN=auto
       - run: go test
       - run: go run math.go
